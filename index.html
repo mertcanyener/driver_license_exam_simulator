@@ -15,7 +15,6 @@
                 <span id="category-name">Genel Test</span>
             </div>
             <div class="exam-timer">
-                <span class="timer-label">Kalan Süre:</span>
                 <span id="time-left">45:00</span>
             </div>
         </header>
@@ -26,39 +25,19 @@
                     <span id="question-number">Soru: 1 / 50</span>
                 </div>
                 
-                <div class="question-content">
-                    <p id="question-text">Soru metni buraya gelecek...</p>
-                    <div id="question-image-container"></div>
+                <div class="question-box">
+                    <p id="question-text">Soru yükleniyor...</p>
                 </div>
 
                 <div class="options-grid" id="options">
-                    <button class="option-item" onclick="selectOption('A')">
-                        <span class="option-letter">A</span>
-                        <span class="option-text">Seçenek A</span>
-                    </button>
-                    <button class="option-item" onclick="selectOption('B')">
-                        <span class="option-letter">B</span>
-                        <span class="option-text">Seçenek B</span>
-                    </button>
-                    <button class="option-item" onclick="selectOption('C')">
-                        <span class="option-letter">C</span>
-                        <span class="option-text">Seçenek C</span>
-                    </button>
-                    <button class="option-item" onclick="selectOption('D')">
-                        <span class="option-letter">D</span>
-                        <span class="option-text">Seçenek D</span>
-                    </button>
-                </div>
+                    </div>
             </section>
 
             <aside class="navigation-sidebar">
                 <h3>Soru Paneli</h3>
                 <div class="question-grid" id="question-navigation">
                     </div>
-                <div class="exam-status">
-                    <p>Boş: <span id="empty-count">50</span></p>
-                    <p>İşaretlenen: <span id="filled-count">0</span></p>
-                </div>
+                
                 <button id="finish-exam-btn">Sınavı Bitir</button>
             </aside>
         </main>
@@ -67,6 +46,29 @@
             <button id="prev-btn" class="nav-btn">Önceki Soru</button>
             <button id="next-btn" class="nav-btn">Sonraki Soru</button>
         </footer>
+
+        <div id="result-screen" class="hidden">
+            <div class="result-card">
+                <h2>Sınav Tamamlandı!</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-item success">
+                        <span class="label">Doğru Sayısı:</span>
+                        <span id="correct-count" class="value">0</span>
+                    </div>
+                    <div class="stat-item danger">
+                        <span class="label">Yanlış Sayısı:</span>
+                        <span id="wrong-count" class="value">0</span>
+                    </div>
+                    <div class="stat-item info">
+                        <span class="label">Süre:</span>
+                        <span id="time-spent" class="value">00:00</span>
+                    </div>
+                </div>
+
+                <button onclick="location.reload()" class="nav-btn">Yeni Sınav Başlat</button>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
