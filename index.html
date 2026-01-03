@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEB Ehliyet Sınav Simülatörü</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <header class="exam-header">
+            <div class="exam-title">
+                <h1>Ehliyet e-Sınav</h1>
+                <span id="category-name">Genel Test</span>
+            </div>
+            <div class="exam-timer">
+                <span class="timer-label">Kalan Süre:</span>
+                <span id="time-left">45:00</span>
+            </div>
+        </header>
+
+        <main class="exam-container">
+            <section class="question-section">
+                <div class="question-header">
+                    <span id="question-number">Soru: 1 / 50</span>
+                </div>
+                
+                <div class="question-content">
+                    <p id="question-text">Soru metni buraya gelecek...</p>
+                    <div id="question-image-container"></div>
+                </div>
+
+                <div class="options-grid" id="options">
+                    <button class="option-item" onclick="selectOption('A')">
+                        <span class="option-letter">A</span>
+                        <span class="option-text">Seçenek A</span>
+                    </button>
+                    <button class="option-item" onclick="selectOption('B')">
+                        <span class="option-letter">B</span>
+                        <span class="option-text">Seçenek B</span>
+                    </button>
+                    <button class="option-item" onclick="selectOption('C')">
+                        <span class="option-letter">C</span>
+                        <span class="option-text">Seçenek C</span>
+                    </button>
+                    <button class="option-item" onclick="selectOption('D')">
+                        <span class="option-letter">D</span>
+                        <span class="option-text">Seçenek D</span>
+                    </button>
+                </div>
+            </section>
+
+            <aside class="navigation-sidebar">
+                <h3>Soru Paneli</h3>
+                <div class="question-grid" id="question-navigation">
+                    </div>
+                <div class="exam-status">
+                    <p>Boş: <span id="empty-count">50</span></p>
+                    <p>İşaretlenen: <span id="filled-count">0</span></p>
+                </div>
+                <button id="finish-exam-btn">Sınavı Bitir</button>
+            </aside>
+        </main>
+
+        <footer class="exam-footer">
+            <button id="prev-btn" class="nav-btn">Önceki Soru</button>
+            <button id="next-btn" class="nav-btn">Sonraki Soru</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
