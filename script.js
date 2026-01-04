@@ -644,8 +644,8 @@ document.addEventListener('fullscreenchange', () => {
 // Pencere boyutlandığında yolu yeniden çiz
 window.addEventListener('resize', drawZigzagPath);
 
-// Sayfa yüklendiğinde artık otomatik başlamıyoruz, menü bekliyor.
-window.onload = checkSavedExam;
+// Sayfa yüklendiğinde (HTML parse edildiğinde) başlat - Daha hızlı açılış
+document.addEventListener('DOMContentLoaded', checkSavedExam);
 
 // --- API SİMÜLASYONU VE GENİŞLETİLMİŞ VERİ SETİ ---
 // Gerçek bir API yerine, genişletilmiş bir soru havuzunu simüle ediyoruz.
@@ -861,10 +861,10 @@ const MOCK_DATA = [
 
 function fetchMockQuestions() {
     return new Promise(resolve => {
-        // Gerçekçi bir ağ gecikmesi simüle et (300ms)
+        // Optimizasyon: Gecikme süresi düşürüldü (300ms -> 10ms)
         setTimeout(() => {
             resolve(MOCK_DATA);
-        }, 300);
+        }, 10);
     });
 }
 
