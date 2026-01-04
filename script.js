@@ -1,5 +1,5 @@
 // 1. Değişken Tanımlamaları
-let questions = []; // JSON'dan gelecek sorular buraya dolacak
+let questions = []; // Sorular buraya dolacak
 let currentQuestionIndex = 0;
 let timeLeft = 45 * 60; // 45 dakika (saniye cinsinden)
 let timerInterval;
@@ -8,7 +8,7 @@ let visitedQuestions = []; // Hangi soruların görüntülendiğini tutacak
 let currentFontSize = 17; // Varsayılan font boyutu (px)
 let soundEnabled = true; // Ses efektleri durumu
 
-// 2. Sınavı Başlatan Fonksiyon (JSON Verisini Çeker)
+// 2. Sınavı Başlatan Fonksiyon
 async function startExam(category) {
     // Yeni sınav için değişkenleri ve zamanlayıcıyı sıfırla
     timeLeft = 45 * 60;
@@ -45,7 +45,7 @@ async function startExam(category) {
         startTimer();
     } catch (error) {
         console.error("Sorular yüklenirken hata oluştu:", error);
-        alert("Soru veritabanı yüklenemedi! Lütfen Live Server'ın açık olduğundan emin olun.");
+        alert("Soru veritabanı yüklenemedi!");
     }
 }
 
@@ -222,7 +222,7 @@ function finishExam() {
     }
 
     // Dairesel İlerleme Çubuğunu Güncelle
-    circle.style.background = `conic-gradient(${progressColor} ${score * 3.6}deg, rgba(0,0,0,0.1) 0deg)`;
+    circle.style.background = `conic-gradient(${progressColor} ${score * 3.6}deg, var(--track-color) 0deg)`;
 
     // --- YENİ: Sonucu Geçmişe Kaydet ---
     const examResult = {
@@ -646,6 +646,17 @@ window.addEventListener('resize', drawZigzagPath);
 
 // Sayfa yüklendiğinde (HTML parse edildiğinde) başlat - Daha hızlı açılış
 document.addEventListener('DOMContentLoaded', checkSavedExam);
+
+// 27. Gizlilik Politikası
+function openPrivacyPolicy() {
+    document.getElementById('settings-modal').classList.add('hidden');
+    document.getElementById('privacy-modal').classList.remove('hidden');
+}
+
+function closePrivacyPolicy() {
+    document.getElementById('privacy-modal').classList.add('hidden');
+    document.getElementById('settings-modal').classList.remove('hidden');
+}
 
 // --- API SİMÜLASYONU VE GENİŞLETİLMİŞ VERİ SETİ ---
 // Gerçek bir API yerine, genişletilmiş bir soru havuzunu simüle ediyoruz.

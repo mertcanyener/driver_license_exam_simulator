@@ -240,10 +240,49 @@
                         <span>Ses Efektleri</span>
                         <button id="sound-toggle-modal" class="control-btn" onclick="toggleSound()">🔊</button>
                     </div>
+                    <div class="setting-row">
+                        <span>Gizlilik</span>
+                        <button class="control-btn" onclick="openPrivacyPolicy()" title="Gizlilik Politikası">📄</button>
+                    </div>
                     <div class="setting-row" id="reset-exam-row" style="display: none;">
                         <span style="color: #e74c3c;">Sınavdan Çık</span>
                         <button class="control-btn" onclick="resetExam()" style="color: #e74c3c; border: 1px solid #e74c3c;" title="Ana Menüye Dön">✖</button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. GİZLİLİK POLİTİKASI MODAL -->
+        <div id="privacy-modal" class="hidden">
+            <div class="settings-overlay" onclick="closePrivacyPolicy()"></div>
+            <div class="settings-card privacy-card">
+                <div class="review-header">
+                    <h2>Gizlilik Politikası</h2>
+                    <button onclick="closePrivacyPolicy()" class="close-btn">×</button>
+                </div>
+                <div class="privacy-content">
+                    <p><strong>Son Güncelleme:</strong> 24.05.2024</p>
+                    
+                    <h3>1. Giriş</h3>
+                    <p>"Ehliyet Sınavı Simülasyonu" uygulaması ("Uygulama") olarak, kullanıcılarımızın gizliliğine saygı duyuyoruz. Bu Gizlilik Politikası, uygulamamızı kullandığınızda verilerinizin nasıl işlendiğini açıklar.</p>
+
+                    <h3>2. Toplanan Bilgiler</h3>
+                    <p>Uygulamamız, herhangi bir kişisel veriyi (ad, soyad, e-posta, konum vb.) sunucularımıza <strong>göndermez</strong> ve <strong>saklamaz</strong>. Uygulama tamamen cihazınız üzerinde çalışır.</p>
+
+                    <h3>3. Veri Saklama (Yerel Depolama)</h3>
+                    <p>Uygulama, kullanıcı deneyimini sağlamak amacıyla aşağıdaki verileri cihazınızın yerel hafızasında (LocalStorage) saklar:</p>
+                    <ul>
+                        <li><strong>Sınav İlerlemesi:</strong> Yarım kalan sınavlara devam edebilmeniz için.</li>
+                        <li><strong>Sınav Geçmişi:</strong> Puanlarınızı ve başarı durumunuzu görebilmeniz için.</li>
+                        <li><strong>Ayarlar:</strong> Tema (Gece/Gündüz), ses efektleri ve yazı boyutu tercihleriniz.</li>
+                    </ul>
+                    <p>Bu veriler sadece sizin cihazınızda bulunur ve uygulamayı kaldırdığınızda veya tarayıcı verilerini temizlediğinizde silinir.</p>
+
+                    <h3>4. İnternet Erişimi</h3>
+                    <p>Uygulama, internet bağlantınızın durumunu (Online/Offline) kontrol eder. Bu işlem sadece size bağlantı koptuğunda uyarı vermek içindir. Herhangi bir veri takibi veya analitik toplama işlemi yapılmaz.</p>
+
+                    <h3>5. İletişim</h3>
+                    <p>Gizlilik politikamızla ilgili sorularınız için geliştirici ile iletişime geçebilirsiniz.</p>
                 </div>
             </div>
         </div>

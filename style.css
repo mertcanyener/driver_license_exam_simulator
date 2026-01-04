@@ -12,6 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    --track-color: rgba(0,0,0,0.1);
 }
 
 /* 2. MOBİL CİHAZ GÖRÜNÜMÜ (APP WRAPPER) */
@@ -1003,6 +1004,7 @@ body {
 /* --- GECE MODU (DARK MODE) --- */
 body.dark-mode {
     background-color: #1a1a1a;
+    --track-color: rgba(255,255,255,0.1);
 }
 
 body.dark-mode .app-wrapper {
@@ -1069,7 +1071,8 @@ body.dark-mode .history-info h4 {
 }
 
 /* AYARLAR MODAL TASARIMI */
-#settings-modal {
+#settings-modal,
+#privacy-modal {
     position: absolute;
     top: 0;
     left: 0;
@@ -1115,12 +1118,78 @@ body.dark-mode .history-info h4 {
     gap: 10px;
 }
 
+/* AYARLAR MENÜSÜ BUTONLARI (MODERN TASARIM) */
+.settings-card .control-btn {
+    background-color: #f1f3f5;
+    color: #2c3e50;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.settings-card .control-btn:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.settings-card .control-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
 body.dark-mode .settings-card {
     background-color: #2c3e50;
     color: #ecf0f1;
 }
 
 body.dark-mode .setting-row {
+    color: #ecf0f1;
+}
+
+body.dark-mode .settings-card .control-btn {
+    background-color: #34495e;
+    color: #ecf0f1;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .settings-card .control-btn:hover {
+    background-color: #2c3e50;
+}
+
+/* GİZLİLİK POLİTİKASI MODAL */
+.privacy-card {
+    max-height: 80vh;
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.privacy-content {
+    overflow-y: auto;
+    text-align: left;
+    padding-right: 5px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.privacy-content h3 {
+    font-size: 1.1rem;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.privacy-content ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+body.dark-mode .privacy-content h3 {
     color: #ecf0f1;
 }
 
@@ -1171,3 +1240,24 @@ body.dark-mode .offline-alert {
 body.dark-mode .offline-alert p {
     color: #ecf0f1;
 }
+
+/* Dark Mode Result Screen */
+body.dark-mode #result-screen {
+    background: rgba(34, 47, 62, 0.98);
+    color: #ecf0f1;
+}
+
+body.dark-mode .stat-item {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .stat-item.success { background: #1e5631; color: #d4edda; }
+body.dark-mode .stat-item.danger { background: #78281f; color: #f8d7da; }
+body.dark-mode .stat-item.info { background: #117864; color: #d1ecf1; }
+body.dark-mode .stat-item.score { background: #5b2c6f; color: #e8daef; }
+
+body.dark-mode .circular-progress::before {
+    background-color: #5b2c6f;
+}
+body.dark-mode .stat-item.success .circular-progress::before { background-color: #1e5631; }
+body.dark-mode .stat-item.danger .circular-progress::before { background-color: #78281f; }
