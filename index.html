@@ -3,55 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEB Ehliyet Sınav Simülatörü</title>
+    <title>Ehliyet Sınav Simülatörü</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="app-wrapper">
-        <header class="exam-header">
-            <div class="exam-title">
-                <h1>Ehliyet e-Sınav</h1>
-                <span id="category-name">Genel Test</span>
+        <!-- Üst Kontrol Paneli (Tema ve Font) -->
+        <div class="header-controls">
+            <button id="settings-btn" class="control-btn" onclick="openSettings()" title="Ayarlar">⚙️</button>
+        </div>
+
+        <!-- 1. ANA MENÜ EKRANI -->
+        <div id="menu-screen" class="menu-screen">
+            <!-- Arka Plan Bulutları -->
+            <div class="cloud x1"></div>
+            <div class="cloud x2"></div>
+            <div class="cloud x3"></div>
+            <div class="cloud x4"></div>
+            <div class="cloud x5"></div>
+            <div class="cloud x6"></div>
+
+            <div class="menu-header">
+                <h1>Ehliyet Sınavı Simülasyonu</h1>
+                <p>Kendini test etmeye hazır mısın?</p>
             </div>
-            <div class="exam-timer">
-                <span id="time-left">45:00</span>
+            
+            <div class="menu-buttons">
+                <!-- DUOLINGO TARZI ÖĞRENME YOLU -->
+                <div class="learning-path">
+                    <!-- Devam Et Butonu (Sağ Üst Köşe - Yoldan Bağımsız) -->
+                    <div id="resume-btn" class="resume-container hidden" onclick="resumeExam()">
+                        <div class="resume-node">
+                            <div class="circle-btn"><span class="icon">⏯️</span></div>
+                        </div>
+                        <span class="path-label">Devam Et</span>
+                    </div>
+
+                    <!-- Yol Çizgisi (Arka Plan) -->
+                    <svg class="path-svg"><path id="zigzag-path"></path></svg>
+
+                    <!-- 1. Trafik ve Çevre Bilgisi (Mavi) -->
+                    <div class="path-item" onclick="startExam('Trafik ve Çevre Bilgisi')">
+                        <div class="path-node blue">
+                            <div id="user-avatar" class="floating-avatar">🚙</div>
+                            <svg class="progress-ring" width="80" height="80">
+                                <circle class="progress-ring__circle bg" stroke="rgba(52, 152, 219, 0.3)" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                                <circle class="progress-ring__circle fill" id="prog-trafik-cevre" stroke="#3498db" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                            </svg>
+                            <div class="circle-btn"><span class="icon">🚦</span></div>
+                        </div>
+                        <span class="path-label">Trafik ve Çevre</span>
+                    </div>
+
+                    <!-- 2. Trafik Adabı (Sarı) -->
+                    <div class="path-item" onclick="startExam('Trafik Adabı')">
+                        <div class="path-node yellow">
+                            <svg class="progress-ring" width="80" height="80">
+                                <circle class="progress-ring__circle bg" stroke="rgba(241, 196, 15, 0.3)" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                                <circle class="progress-ring__circle fill" id="prog-trafik-adabi" stroke="#f1c40f" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                            </svg>
+                            <div class="circle-btn"><span class="icon">🚗</span></div>
+                        </div>
+                        <span class="path-label">Trafik Adabı</span>
+                    </div>
+
+                    <!-- 3. Motor Bilgisi (Turuncu) -->
+                    <div class="path-item" onclick="startExam('Motor Bilgisi')">
+                        <div class="path-node orange">
+                            <svg class="progress-ring" width="80" height="80">
+                                <circle class="progress-ring__circle bg" stroke="rgba(230, 126, 34, 0.3)" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                                <circle class="progress-ring__circle fill" id="prog-motor" stroke="#e67e22" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                            </svg>
+                            <div class="circle-btn"><span class="icon">⚙️</span></div>
+                        </div>
+                        <span class="path-label">Motor Bilgisi</span>
+                    </div>
+
+                    <!-- 4. İlk Yardım (Kırmızı) -->
+                    <div class="path-item" onclick="startExam('İlk Yardım')">
+                        <div class="path-node red">
+                            <svg class="progress-ring" width="80" height="80">
+                                <circle class="progress-ring__circle bg" stroke="rgba(231, 76, 60, 0.3)" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                                <circle class="progress-ring__circle fill" id="prog-ilkyardim" stroke="#e74c3c" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                            </svg>
+                            <div class="circle-btn"><span class="icon">🚑</span></div>
+                        </div>
+                        <span class="path-label">İlk Yardım</span>
+                    </div>
+
+                    <!-- 5. Karışık Sınav (Mor) -->
+                    <div class="path-item" onclick="startExam('mixed')">
+                        <div class="path-node purple">
+                            <svg class="progress-ring" width="80" height="80">
+                                <circle class="progress-ring__circle bg" stroke="rgba(155, 89, 182, 0.3)" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                                <circle class="progress-ring__circle fill" id="prog-mixed" stroke="#9b59b6" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                            </svg>
+                            <div class="circle-btn"><span class="icon">🔀</span></div>
+                        </div>
+                        <span class="path-label">Karışık Sınav</span>
+                    </div>
+                </div>
+
+                <!-- Geçmiş Sınavlar (En Altta, Dikdörtgen) -->
+                <button class="menu-btn history" onclick="showHistory()" style="margin-top: 10px; z-index: 2;">📜 Geçmiş Sınavlarım</button>
             </div>
-        </header>
+        </div>
 
-        <main class="exam-container">
-            <section class="question-section">
-                <div class="question-header">
-                    <span id="question-number">Soru: 1 / 50</span>
+        <!-- 2. SINAV EKRANI (Başlangıçta Gizli) -->
+        <div id="exam-screen" class="hidden">
+            <header class="exam-header">
+                <div class="exam-title">
+                    <h1>Ehliyet E-Sınav</h1>
+                    <span id="category-name">Genel Test</span>
                 </div>
-                
-                <div class="question-box">
-                    <p id="question-text">Soru yükleniyor...</p>
+                <div class="timer-container">
+                    <svg class="timer-svg" viewBox="0 0 100 100">
+                        <circle class="timer-bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="timer-progress" id="timer-progress" cx="50" cy="50" r="40"></circle>
+                    </svg>
+                    <span id="time-left" class="timer-text">45:00</span>
                 </div>
+            </header>
 
-                <div class="options-grid" id="options">
+            <main class="exam-container">
+                <section class="question-section">
+                    <div class="question-header">
+                        <span id="question-number">Soru: 1 / 50</span>
                     </div>
-            </section>
-
-            <aside class="navigation-sidebar">
-                <h3>Soru Paneli</h3>
-                <div class="question-grid" id="question-navigation">
+                    
+                    <div class="question-box">
+                        <p id="question-text">Soru yükleniyor...</p>
                     </div>
-                
-                <button id="finish-exam-btn">Sınavı Bitir</button>
-            </aside>
-        </main>
 
-        <footer class="exam-footer">
-            <button id="prev-btn" class="nav-btn">Önceki Soru</button>
-            <button id="next-btn" class="nav-btn">Sonraki Soru</button>
-        </footer>
+                    <div class="options-grid" id="options">
+                    </div>
+                </section>
+
+                <aside class="navigation-sidebar">
+                    <h3>Soru Paneli</h3>
+                    <div class="question-grid" id="question-navigation">
+                    </div>
+                    
+                    <button id="finish-exam-btn">Sınavı Bitir</button>
+                </aside>
+            </main>
+
+            <footer class="exam-footer">
+                <button id="prev-btn" class="nav-btn">Önceki Soru</button>
+                <button id="next-btn" class="nav-btn">Sonraki Soru</button>
+            </footer>
+        </div>
 
         <div id="result-screen" class="hidden">
+            <div id="confetti-container"></div>
             <div class="result-card">
-                <h2>Sınav Tamamlandı!</h2>
+                <h2 id="result-title">Sınav Tamamlandı!</h2>
+                <p id="result-message"></p>
                 
                 <div class="stats-container">
+                    <div class="stat-item score">
+                        <span class="label">Puanınız:</span>
+                        <div class="circular-progress" id="score-circle">
+                            <span class="progress-value" id="score-value">0</span>
+                        </div>
+                    </div>
                     <div class="stat-item success">
                         <span class="label">Doğru Sayısı:</span>
                         <span id="correct-count" class="value">0</span>
@@ -66,7 +182,77 @@
                     </div>
                 </div>
 
-                <button onclick="location.reload()" class="nav-btn">Yeni Sınav Başlat</button>
+                <button onclick="reviewAnswers()" class="nav-btn review-btn">Cevapları İncele</button>
+                <button onclick="returnToMenu()" class="nav-btn">Yeni Sınav Başlat</button>
+            </div>
+        </div>
+
+        <!-- 3. CEVAP İNCELEME EKRANI -->
+        <div id="review-screen" class="hidden">
+            <div class="review-header">
+                <h2>Yanlış Cevaplar</h2>
+                <button onclick="closeReview()" class="close-btn">×</button>
+            </div>
+            <div id="review-content" class="review-content">
+                <!-- JS ile doldurulacak -->
+            </div>
+            <button onclick="returnToMenu()" class="nav-btn">Ana Menüye Dön</button>
+        </div>
+
+        <!-- 4. GEÇMİŞ SINAVLAR EKRANI -->
+        <div id="history-screen" class="hidden">
+            <div class="review-header">
+                <h2>Sınav Geçmişi</h2>
+                <button onclick="closeHistory()" class="close-btn">×</button>
+            </div>
+            <div id="history-content" class="review-content">
+                <!-- JS ile doldurulacak -->
+            </div>
+            <button onclick="returnToMenu()" class="nav-btn">Ana Menüye Dön</button>
+        </div>
+
+        <!-- 5. AYARLAR MENÜSÜ (MODAL) -->
+        <div id="settings-modal" class="hidden">
+            <div class="settings-overlay" onclick="closeSettings()"></div>
+            <div class="settings-card">
+                <div class="review-header">
+                    <h2>Ayarlar</h2>
+                    <button onclick="closeSettings()" class="close-btn">×</button>
+                </div>
+                <div class="settings-body">
+                    <div class="setting-row">
+                        <span>Yazı Boyutu</span>
+                        <div class="setting-controls">
+                            <button class="control-btn" onclick="changeFontSize(-1)">A-</button>
+                            <button class="control-btn" onclick="changeFontSize(1)">A+</button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <span>Tema</span>
+                        <button id="theme-toggle-modal" class="control-btn" onclick="toggleTheme()">🌙</button>
+                    </div>
+                    <div class="setting-row">
+                        <span>Ekran Modu</span>
+                        <button id="fullscreen-toggle-modal" class="control-btn" onclick="toggleFullScreen()">⛶</button>
+                    </div>
+                    <div class="setting-row">
+                        <span>Ses Efektleri</span>
+                        <button id="sound-toggle-modal" class="control-btn" onclick="toggleSound()">🔊</button>
+                    </div>
+                    <div class="setting-row" id="reset-exam-row" style="display: none;">
+                        <span style="color: #e74c3c;">Sınavdan Çık</span>
+                        <button class="control-btn" onclick="resetExam()" style="color: #e74c3c; border: 1px solid #e74c3c;" title="Ana Menüye Dön">✖</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. İNTERNET BAĞLANTISI UYARISI -->
+        <div id="offline-warning" class="hidden">
+            <div class="offline-alert">
+                <div class="offline-icon">📡❌</div>
+                <h3>Bağlantı Koptu!</h3>
+                <p>İnternet bağlantınız kesildi. Lütfen bağlantınızı kontrol edin.</p>
             </div>
         </div>
     </div>
