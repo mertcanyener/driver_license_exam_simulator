@@ -9,6 +9,14 @@ Bu proje, ehliyet sınavına hazırlananlar için geliştirilmiş, Duolingo tarz
 - **Ses Efektleri:** Etkileşimli buton ve sonuç sesleri.
 - **Mobil Uyumlu:** Tüm cihazlarda sorunsuz çalışan responsive tasarım.
 - **Gizlilik:** Kişisel veri toplamayan güvenli yapı. Detaylar için [PRIVACY_POLICY.md](PRIVACY_POLICY.md) dosyasına bakabilirsiniz.
+- **Reklamlar:** Google AdMob entegrasyonu (Banner ve Interstitial).
 
 ## Kurulum
 Projeyi indirdikten sonra `index.html` dosyasını tarayıcınızda açmanız yeterlidir.
+
+### AdMob Kurulumu (Mobil Uygulama İçin)
+Reklamların çalışması için terminalde şu komutu çalıştırarak eklentiyi yükleyin:
+```bash
+npm install @capacitor-community/admob
+npx cap sync
+```

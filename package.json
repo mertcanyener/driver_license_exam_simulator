@@ -1,0 +1,27 @@
+{
+  "name": "ehliyet-sinavi-app",
+  "version": "1.0.0",
+  "description": "Bu proje, ehliyet sınavına hazırlananlar için geliştirilmiş, Duolingo tarzı arayüze sahip interaktif bir web uygulamasıdır.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mertcanyener/driver_license_exam_simulator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mertcanyener/driver_license_exam_simulator/issues"
+  },
+  "homepage": "https://github.com/mertcanyener/driver_license_exam_simulator#readme",
+  "dependencies": {
+    "@capacitor-community/admob": "^8.0.0",
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0"
+  }
+}

@@ -7,6 +7,7 @@ let userAnswers = new Array(50).fill(null); // Kullanıcının cevaplarını tut
 let visitedQuestions = []; // Hangi soruların görüntülendiğini tutacak
 let currentFontSize = 17; // Varsayılan font boyutu (px)
 let soundEnabled = true; // Ses efektleri durumu
+let adMobReady = false; // Reklam servisi durumu
 
 // 2. Sınavı Başlatan Fonksiyon
 async function startExam(category) {
@@ -222,7 +223,7 @@ function finishExam() {
     }
 
     // Dairesel İlerleme Çubuğunu Güncelle
-    circle.style.background = `conic-gradient(${progressColor} ${score * 3.6}deg, var(--track-color) 0deg)`;
+    circle.style.background = `conic-gradient(${progressColor} ${score * 3.6}deg, rgba(0,0,0,0.1) 0deg)`;
 
     // --- YENİ: Sonucu Geçmişe Kaydet ---
     const examResult = {
@@ -244,6 +245,9 @@ function finishExam() {
     document.getElementById('time-spent').innerText = `${m}:${s.toString().padStart(2, '0')}`;
     
     document.getElementById('result-screen').classList.remove('hidden');
+
+    // Sınav bittiğinde tam ekran reklam göster
+    showInterstitialAd();
 }
 
 // 9. Ana Menüye Dönüş
@@ -645,17 +649,61 @@ document.addEventListener('fullscreenchange', () => {
 window.addEventListener('resize', drawZigzagPath);
 
 // Sayfa yüklendiğinde (HTML parse edildiğinde) başlat - Daha hızlı açılış
-document.addEventListener('DOMContentLoaded', checkSavedExam);
+document.addEventListener('DOMContentLoaded', () => {
+    checkSavedExam();
+    initializeAds(); // Reklam servisini başlat
+});
 
-// 27. Gizlilik Politikası
-function openPrivacyPolicy() {
-    document.getElementById('settings-modal').classList.add('hidden');
-    document.getElementById('privacy-modal').classList.remove('hidden');
+// 28. Google AdMob Reklam Entegrasyonu
+async function initializeAds() {
+    // Sadece mobil uygulamada (Native) çalışır, web'de hata vermemesi için kontrol edilir
+    if (typeof Capacitor === 'undefined' || !Capacitor.isNative) return;
+
+    try {
+        // ÖNEMLİ: Saf JS projesinde 'import' hatası almamak için CDN kullanıyoruz.
+        // Bu yöntem internet gerektirir (Reklamlar için zaten internet şarttır).
+        const { AdMob, BannerAdSize, BannerAdPosition } = await import('https://cdn.jsdelivr.net/npm/@capacitor-community/admob@5.0.0/+esm');
+
+        // AdMob'u Başlat
+        await AdMob.initialize({
+            requestTrackingAuthorization: true,
+            initializeForTesting: true, // Test modunda başlat (Yayınlarken false yapın)
+        });
+
+        // Alt Kısımda Banner Reklam Göster
+        // Not: Aşağıdaki ID Google'ın test ID'sidir. Kendi ID'nizle değiştirin.
+        await AdMob.showBanner({
+            adId: 'ca-app-pub-3940256099942544/6300978111', 
+            adSize: BannerAdSize.BANNER,
+            position: BannerAdPosition.BOTTOM_CENTER,
+            margin: 0,
+            isTesting: true
+        });
+
+        adMobReady = true;
+        console.log('AdMob başarıyla başlatıldı.');
+    } catch (error) {
+        console.log('AdMob başlatılamadı (Paket veya İnternet sorunu):', error);
+    }
 }
 
-function closePrivacyPolicy() {
-    document.getElementById('privacy-modal').classList.add('hidden');
-    document.getElementById('settings-modal').classList.remove('hidden');
+async function showInterstitialAd() {
+    if (!adMobReady) return;
+
+    try {
+        // CDN üzerinden import
+        const { AdMob } = await import('https://cdn.jsdelivr.net/npm/@capacitor-community/admob@5.0.0/+esm');
+        
+        // Tam Ekran Reklamı Hazırla ve Göster
+        await AdMob.prepareInterstitial({
+            adId: 'ca-app-pub-3940256099942544/1033173712', // Test ID
+            isTesting: true
+        });
+
+        await AdMob.showInterstitial();
+    } catch (error) {
+        console.error('Interstitial reklam hatası:', error);
+    }
 }
 
 // --- API SİMÜLASYONU VE GENİŞLETİLMİŞ VERİ SETİ ---
