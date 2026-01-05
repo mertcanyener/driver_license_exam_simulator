@@ -1,23 +1,23 @@
 # Gizlilik Politikası
 
-**Son Güncelleme:** 24.05.2024
+**Son Güncelleme:** 05.01.2026
 
 ## 1. Giriş
-"Ehliyet Sınavı Simülasyonu" uygulaması ("Uygulama") olarak, kullanıcılarımızın gizliliğine saygı duyuyoruz. Bu Gizlilik Politikası, uygulamamızı kullandığınızda verilerinizin nasıl işlendiğini açıklar.
+"Ehliyet Sınavı Simülasyonu" ("Uygulama") olarak, kullanıcı gizliliğine ve veri güvenliğine büyük önem vermekteyiz. İşbu Gizlilik Politikası, Uygulama'nın kullanımı sırasında verilerinizin işlenme süreçlerini ve gizlilik haklarınızı detaylandırmaktadır.
 
 ## 2. Toplanan Bilgiler
-Uygulamamız, herhangi bir kişisel veriyi (ad, soyad, e-posta, konum vb.) sunucularımıza **göndermez** ve **saklamaz**. Uygulama tamamen cihazınız üzerinde çalışır.
+Uygulama, kullanıcılarına ait herhangi bir kişisel veriyi (ad, soyad, e-posta adresi, konum bilgisi vb.) harici sunuculara **iletmemekte** ve **kayıt altına almamaktadır**. Uygulama, tamamen kullanıcının cihazı üzerinde yerel olarak çalışmaktadır.
 
 ## 3. Veri Saklama (Yerel Depolama)
-Uygulama, kullanıcı deneyimini sağlamak amacıyla aşağıdaki verileri cihazınızın yerel hafızasında (LocalStorage) saklar:
-- **Sınav İlerlemesi:** Yarım kalan sınavlara devam edebilmeniz için.
-- **Sınav Geçmişi:** Puanlarınızı ve başarı durumunuzu görebilmeniz için.
-- **Ayarlar:** Tema (Gece/Gündüz), ses efektleri ve yazı boyutu tercihleriniz.
+Kullanıcı deneyiminin sürekliliğini sağlamak amacıyla, aşağıda belirtilen veriler yalnızca kullanıcının cihazında bulunan yerel depolama alanında (LocalStorage) muhafaza edilmektedir:
+- **Sınav İlerleme Durumu:** Yarım bırakılan sınavlara devam edilebilmesi amacıyla.
+- **Sınav Geçmişi:** Kullanıcı puanlarının ve başarı istatistiklerinin görüntülenebilmesi amacıyla.
+- **Kullanıcı Tercihleri:** Tema (Gece/Gündüz modu), ses efektleri ve yazı boyutu gibi kişiselleştirme ayarları.
 
-Bu veriler sadece sizin cihazınızda bulunur ve uygulamayı kaldırdığınızda veya tarayıcı verilerini temizlediğinizde silinir.
+Söz konusu veriler, yalnızca kullanıcının cihazında saklanmakta olup; uygulamanın cihazdan kaldırılması veya tarayıcı verilerinin temizlenmesi durumunda kalıcı olarak silinmektedir.
 
 ## 4. İnternet Erişimi
-Uygulama, internet bağlantınızın durumunu (Online/Offline) kontrol eder. Bu işlem sadece size bağlantı koptuğunda uyarı vermek içindir. Herhangi bir veri takibi veya analitik toplama işlemi yapılmaz.
+Uygulama, yalnızca bağlantı durumunu tespit etmek ve bağlantı kesintisi durumunda kullanıcıyı bilgilendirmek amacıyla internet erişim durumunu (Çevrimiçi/Çevrimdışı) kontrol etmektedir. Bu süreçte herhangi bir veri takibi, kullanıcı analizi veya veri toplama faaliyeti gerçekleştirilmemektedir.
 
 ## 5. İletişim
-Gizlilik politikamızla ilgili sorularınız için geliştirici ile iletişime geçebilirsiniz.
+İşbu Gizlilik Politikası ile ilgili her türlü soru, görüş ve önerileriniz için geliştirici ekibi ile iletişime geçebilirsiniz.

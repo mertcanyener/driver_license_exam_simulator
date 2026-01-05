@@ -400,6 +400,19 @@ function closeSettings() {
     document.getElementById('settings-modal').classList.add('hidden');
 }
 
+// 29. Gizlilik Politikası Modal İşlemleri
+function openPrivacyPolicy() {
+    // Ayarlar menüsünü gizle, Gizlilik modalını aç
+    document.getElementById('settings-modal').classList.add('hidden');
+    document.getElementById('privacy-modal').classList.remove('hidden');
+}
+
+function closePrivacyPolicy() {
+    // Gizlilik modalını gizle, Ayarlar menüsünü geri aç
+    document.getElementById('privacy-modal').classList.add('hidden');
+    document.getElementById('settings-modal').classList.remove('hidden');
+}
+
 // 21. Sınavı Sıfırla ve Çık
 function resetExam() {
     if (confirm("Sınavı sonlandırıp ana menüye dönmek istediğinize emin misiniz? Mevcut ilerlemeniz silinecektir.")) {
@@ -610,13 +623,28 @@ function drawZigzagPath() {
 function startConfetti() {
     const container = document.getElementById('confetti-container');
     container.innerHTML = ''; // Önce temizle
-    const colors = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6', '#e67e22'];
+    
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    let colors;
+
+    if (isDarkMode) {
+        // Neon Renkler (Parlak Camgöbeği, Macenta, Limon Yeşili vb.)
+        colors = ['#00ffff', '#ff00ff', '#ffff00', '#39ff14', '#ff073a', '#fe019a'];
+    } else {
+        colors = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6', '#e67e22'];
+    }
 
     for (let i = 0; i < 100; i++) {
         const div = document.createElement('div');
         div.classList.add('confetti');
         div.style.left = Math.random() * 100 + '%';
         div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Koyu temada neon parlama efekti ekle
+        if (isDarkMode) {
+            div.style.boxShadow = `0 0 6px ${div.style.backgroundColor}, 0 0 12px ${div.style.backgroundColor}`;
+        }
+        
         div.style.animationDuration = (Math.random() * 2 + 2) + 's'; // 2-4 saniye arası düşüş
         div.style.animationDelay = (Math.random() * 2) + 's';
         container.appendChild(div);
