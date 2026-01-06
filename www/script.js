@@ -1032,26 +1032,24 @@ function playResultSound(isSuccess) {
             osc.stop(now + i * 0.1 + 0.3);
         });
     } else {
-        // Başarısızlık Sesi: Alçalan tonlar (Wah-wah-wah)
+        // Başarısızlık Sesi
         const notes = [392.00, 369.99, 349.23, 329.63]; // G4, F#4, F4, E4
         
         notes.forEach((freq, i) => {
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             
-            osc.type = 'sawtooth'; // Biraz daha sert ton
-            osc.frequency.setValueAtTime(freq, now + i * 0.3);
-            // Hafif kayma efekti (pitch bend)
-            osc.frequency.linearRampToValueAtTime(freq - 10, now + i * 0.3 + 0.25);
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, now + i * 0.2);
             
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             
-            gain.gain.setValueAtTime(0.05, now + i * 0.3);
-            gain.gain.linearRampToValueAtTime(0.001, now + i * 0.3 + 0.25);
+            gain.gain.setValueAtTime(0.05, now + i * 0.2);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.2 + 0.4);
             
-            osc.start(now + i * 0.3);
-            osc.stop(now + i * 0.3 + 0.25);
+            osc.start(now + i * 0.2);
+            osc.stop(now + i * 0.2 + 0.4);
         });
     }
 }
